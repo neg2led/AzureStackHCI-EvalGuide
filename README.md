@@ -32,7 +32,7 @@ Start your Azure Stack HCI evaluation using nested virtualization
 
 If you have a single physical system, which could be a laptop, desktop, or server, or you have no spare hardware at all, using **nested virtualization** would be a great approach to experiencing Azure Stack HCI.  You can get more details at the start of the path
 
-![Nested path image](/media/nested.png "Nested virtualization path image")
+![Nested path image](../../media/nested.png "Nested virtualization path image")
 
 [**Evaluate Azure Stack HCI using Nested Virtualization**](/nested/README.md "Evaluate Azure Stack HCI using Nested Virtualization")
 

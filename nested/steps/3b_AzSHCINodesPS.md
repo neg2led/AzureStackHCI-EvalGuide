@@ -17,7 +17,7 @@ Architecture
 
 As shown on the architecture graphic below, in this step, **you'll deploy a number of nested Azure Stack HCI nodes**. The minimum number for deployment of a local Azure Stack HCI cluster is **2 nodes**, however if your Hyper-V host has enough spare capacity, you could deploy additional nested nodes, and explore more complex scenarios, such as a nested **stretch cluster**.  For the purpose of this step, we'll focus on deploying 4 nodes, however you should make adjustments based on your environment.
 
-![Architecture diagram for Azure Stack HCI nested](/media/nested_virt_nodes.png "Architecture diagram for Azure Stack HCI nested")
+![Architecture diagram for Azure Stack HCI nested](../../media/nested_virt_nodes.png "Architecture diagram for Azure Stack HCI nested")
 
 Create your first nested Azure Stack HCI node
 -----------
@@ -64,9 +64,9 @@ Finally, you need to add some additional network adapters, set the vCPU count, e
 # Set the VM processor count for the VM
 Set-VM -VMname $nodeName -ProcessorCount 4
 # Add the virtual network adapters to the VM and configure appropriately
-1..3 | ForEach-Object { 
+1..3 | ForEach-Object {
     Add-VMNetworkAdapter -VMName $nodeName -SwitchName InternalNAT
-    Set-VMNetworkAdapter -VMName $nodeName -MacAddressSpoofing On -AllowTeaming On 
+    Set-VMNetworkAdapter -VMName $nodeName -MacAddressSpoofing On -AllowTeaming On
 }
 # Create the DATA virtual hard disks and attach them
 $dataDrives = 1..4 | ForEach-Object { New-VHD -Path "C:\VMs\$nodeName\Virtual Hard Disks\DATA0$_.vhdx" -Dynamic -Size 100GB }
@@ -81,7 +81,7 @@ Set-VMProcessor -VMName $nodeName -ExposeVirtualizationExtensions $true -Verbose
 
 When those commands have completed, this is what you would see in Hyper-V Manager, in the settings view:
 
-![Finished settings for the AZSHCINODE01 node](/media/azshci_settings_ps.png "Finished settings for the AZSHCINODE01 node")
+![Finished settings for the AZSHCINODE01 node](../../media/azshci_settings_ps.png "Finished settings for the AZSHCINODE01 node")
 
 With the VM configured correctly, you can use the following commands to connect to the VM using VM Connect, and at the same time, start the VM.  To boot from the ISO, you'll need to click on the VM and quickly press a key to trigger the boot from the DVD inside the VM.  If you miss the prompt to press a key to boot from CD or DVD, simply reset the VM and try again.
 
@@ -91,12 +91,12 @@ vmconnect.exe localhost $nodeName
 Start-VM -Name $nodeName
 ```
 
-![Booting the VM and triggering the boot from DVD](/media/boot_from_dvd.png "Booting the VM and triggering the boot from DVD")
+![Booting the VM and triggering the boot from DVD](../../media/boot_from_dvd.png "Booting the VM and triggering the boot from DVD")
 
 ### Complete the Out of Box Experience (OOBE) ###
 With the VM running, and the boot process initiated, you should be in a position to start the deployment of the Azure Stack HCI OS.
 
-![Initiate setup of the Azure Stack HCI OS](/media/azshci_setup.png "Initiate setup of the Azure Stack HCI OS")
+![Initiate setup of the Azure Stack HCI OS](../../media/azshci_setup.png "Initiate setup of the Azure Stack HCI OS")
 
 Proceed through the process, making the following selections:
 
@@ -108,7 +108,7 @@ Proceed through the process, making the following selections:
 
 Installation will then begin, and will take a few minutes, automatically rebooting as part of the process.
 
-![Completed setup of the Azure Stack HCI OS](/media/azshci_setup_complete.png "Completed setup of the Azure Stack HCI OS")
+![Completed setup of the Azure Stack HCI OS](../../media/azshci_setup_complete.png "Completed setup of the Azure Stack HCI OS")
 
 With the installation complete, you'll be prompted to change the password before logging in.  Enter a password, and once complete, you should be at the **C:\Users\Administrator** screen.  Minimize the VM Connect window.
 
@@ -126,7 +126,7 @@ Invoke-Command -VMName "$nodeName" -Credential $azsHCILocalCreds -ScriptBlock {
     New-NetIPAddress -IPAddress "$using:newIP" -DefaultGateway "192.168.0.1" -InterfaceAlias "Ethernet" -PrefixLength "24" | Out-Null
     Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses ("192.168.0.2")
     $nodeIP = Get-NetIPAddress -AddressFamily IPv4 -InterfaceAlias "Ethernet" | Select-Object IPAddress
-    Write-Verbose "The currently assigned IPv4 address for $using:nodeName is $($nodeIP.IPAddress)" -Verbose 
+    Write-Verbose "The currently assigned IPv4 address for $using:nodeName is $($nodeIP.IPAddress)" -Verbose
 }
 ```
 

@@ -25,11 +25,11 @@ You should be over on **MGMT01**, but if you're not, log into MGMT01, and open t
 4. In the **Create volume** pane, enter **VMSTORAGE** for the volume name, and leave **Resiliency** as **Three-way mirror**
 5. In Size on HDD, specify **20GB** for the size of the volume, then click **Create**.
 
-![Create a volume on Azure Stack HCI](/media/wac_vm_storage.png "Create a volume on Azure Stack HCI")
+![Create a volume on Azure Stack HCI](../../media/wac_vm_storage.png "Create a volume on Azure Stack HCI")
 
 6. Creating the volume can take a few minutes. Notifications in the upper-right will let you know when the volume is created. The new volume appears in the Inventory list
 
-![Volume created on Azure Stack HCI](/media/wac_vm_storage_deployed.png "Volume created on Azure Stack HCI")
+![Volume created on Azure Stack HCI](../../media/wac_vm_storage_deployed.png "Volume created on Azure Stack HCI")
 
 ### Create a mirror-accelerated parity volume ###
 Mirror-accelerated parity reduces the footprint of the volume on the HDD. For example, a three-way mirror volume would mean that for every 10 terabytes of size, you will need 30 terabytes as footprint. To reduce the overhead in footprint, create a volume with mirror-accelerated parity. This reduces the footprint from 30 terabytes to just 22 terabytes, even with only 4 servers, by mirroring the most active 20 percent of data, and using parity, which is more space efficient, to store the rest. You can adjust this ratio of parity and mirror to make the performance versus capacity tradeoff that's right for your workload. For example, 90 percent parity and 10 percent mirror yields less performance but streamlines the footprint even further.
@@ -47,7 +47,7 @@ You may have seen, during the **Create volume** wizard, you could have enabled d
 1. Still in **Windows Admin Center** on **MGMT01**, on the Volumes page, select the **Inventory** tab, and then select your **VMSTORAGE** volume
 2. On the Volume VMSTORAGE pane, you'll see a simple rocker switch to enable **Deduplication and compression**.  Click to enable it, and click **Start**
 
-![Enable deduplication on volume](/media/wac_enable_dedup.png "Enable deduplication on volume")
+![Enable deduplication on volume](../../media/wac_enable_dedup.png "Enable deduplication on volume")
 
 3. In the **Enable deduplication** pane, use the drop-down to select **Hyper-V** then click **Enable Deduplication**. This should be enabled quickly, as there's no files on the volume.
 
@@ -79,12 +79,12 @@ You should still be over on **MGMT01**, but if you're not, log into MGMT01, and 
 5. The creation process will take a few moments, and once complete, **VM001** should show within the **Virtual machines view**
 6. Click on the **VM** and then click **Start** - within moments, the VM should be running
 
-![VM001 up and running](/media/wac_vm001.png "VM001 up and running")
+![VM001 up and running](../../media/wac_vm001.png "VM001 up and running")
 
 7. Click on **VM001** to view the properties and status for this running VM
 8. Click on **Connect** - you may get a **VM Connect** prompt:
 
-![Connect to VM001](/media/vm_connect.png "Connect to VM001")
+![Connect to VM001](../../media/vm_connect.png "Connect to VM001")
 
 9. Click on **Go to Settings** and in the **Remote Desktop** pane, click on **Allow remote connections to this computer**, then **Save**
 10. Click the **Back** button in your browser to return to the VM001 view, then click **Connect**, and when prompted with the certificate prompt, click **Connect** and enter appropriate credentials
@@ -101,7 +101,7 @@ The final step we'll cover is using Windows Admin Center to live migrate VM001 f
 3. Under **Host server**, make a note of the node that VM001 is currently running on.  You may need to expand the column width to see the name
 4. Next to **VM001**, click the tick box next to VM001, then click **More**. then click **Move**
 
-![Start Live Migration using Windows Admin Center](/media/wac_move.png "Start Live Migration using Windows Admin Center")
+![Start Live Migration using Windows Admin Center](../../media/wac_move.png "Start Live Migration using Windows Admin Center")
 
 5. In the **Move Virtual Machine** pane, ensure **Failover Cluster** is selected, and leave the default **Best available cluster node** to allow Windows Admin Center to pick where to migrate the VM to, then click **Move**
 6. The live migration will then begin, and within a few seconds, the VM should be running on a different node.
@@ -132,7 +132,7 @@ Get-VM | Stop-VM -Force
 
 3. Once all the VMs are switched off, you can then shut down your Hyper-V host.  If you're running this environment on physical gear on-prem, you're all done, but if you deployed in Azure, visit https://portal.azure.com/, and login with your Azure credentials.  Once logged in, using the search box on the dashboard, enter "azshci" and once the results are returned, click on your AzSHCIHost virtual machine.
 
-![Virtual machine located in Azure](/media/azure_vm_search.png "Virtual machine located in Azure")
+![Virtual machine located in Azure](../../media/azure_vm_search.png "Virtual machine located in Azure")
 
 4. Once on the overview blade for your VM, along the **top navigation**, click **Stop**, and then click **OK**.  Your VM will then be deallocated and **compute charges** will cease.
 
