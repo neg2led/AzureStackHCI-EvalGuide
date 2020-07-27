@@ -59,12 +59,12 @@ With 16GB memory, running on a laptop, we'll need to ensure that we're taking ad
 
 Obviously, if you have a larger physical system, such as a workstation, or server, you'll likely have a greater amount of memory available to you, therefore you can adjust the memory levels for the different resources accordingly.
 
-If your physical system doesn't meet these recommended requirements, you're still free to test, and see if you can proceed with lower numbers, but it may be a better approach to [deploy in Azure instead](/azshci/NestedInAzure.md "Deploy in Azure")
+If your physical system doesn't meet these recommended requirements, you're still free to test, and see if you can proceed with lower numbers, but it may be a better approach to [deploy in Azure instead](../../azshci/NestedInAzure.md "Deploy in Azure")
 
 #### Reducing memory consumption ####
 To reduce the memory requirements of the configuration, you could choose not to deploy in a sandbox envinronment.  By removing the domain controller and management virtual machines, you could free up additional memory that could be used for the nested Azure Stack HCI nodes themselves.  However, this will require you to have an existing domain environment accessible, and an alternative location, potentially on the host itself, to install the Windows Admin Center.  This approach will **not** be covered as part of these initial guides, but may be evaluated for later versions.
 
-If you do want to skip deployment of the management infrastructure, install the Windows Admin Center, and jump ahead to [deploy your nested Azure Stack HCI nodes](/nested/steps/3a_AzSHCINodesGUI.md "deploying your Azure Stack HCI nodes").  Bear in mind, you may need to modify certain steps to account for the different management environment.
+If you do want to skip deployment of the management infrastructure, install the Windows Admin Center, and jump ahead to [deploy your nested Azure Stack HCI nodes](../../nested/steps/3a_AzSHCINodesGUI.md "deploying your Azure Stack HCI nodes").  Bear in mind, you may need to modify certain steps to account for the different management environment.
 
 Get an Azure subscription
 -----------
@@ -152,5 +152,5 @@ Next Steps
 -----------
 In this step, you've successfully configured your Hyper-V host, and the required core networking to support the nested scenario.  You're now ready to start creating your virtual machines as part of deploying your management infrastructure. You have 2 choices on how to proceed, either a more graphical way, using a GUI (Graphical User Interface, such as Hyper-V Manager, Server Manager etc), or via PowerShell.  Make your choice below:
 
-* [**Part 2a** - Deploy your management infrastructure with the GUI](/nested/steps/2a_ManagementInfraGUI.md "Deploy your management infrastructure with the GUI")
-* [**Part 2b** - Deploy your management infrastructure with PowerShell](/nested/steps/2b_ManagementInfraPS.md "Deploy your management infrastructure with PowerShell")
+* [**Part 2a** - Deploy your management infrastructure with the GUI](../../nested/steps/2a_ManagementInfraGUI.md "Deploy your management infrastructure with the GUI")
+* [**Part 2b** - Deploy your management infrastructure with PowerShell](../../nested/steps/2b_ManagementInfraPS.md "Deploy your management infrastructure with PowerShell")
